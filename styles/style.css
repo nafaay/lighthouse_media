@@ -1,7 +1,7 @@
 body{
 	margin: 15px;
 	margin-left: 25px;
-	background-color: #c4ebed;
+	background-color: #f0d5d3;
 }
 
 span{
@@ -10,7 +10,7 @@ span{
 }
 
 .container-fluid{
-	background-color: black;
+	background-color: #4d4246;
 }
 
 #msg{
@@ -133,7 +133,7 @@ a{
 }
 
 .name{
-	color: green;
+	color: #0a1f66;
 }
 
 #between{

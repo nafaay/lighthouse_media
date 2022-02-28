@@ -11,11 +11,16 @@
     <body>  
 
       <?php
+      session_start();
+        $name = "";
         require_once("header.php");
+        if(isset($_SESSION['user_name'])){
+          $name = $_SESSION['user_name'];
+        }
       ?>
     	<div class="row">
 	  		<div class="col-md-12" id="welcome">
-		  	  <h3>Welcome to Lighthouse Labs Social Media Website</h3>	
+		  	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
 				  <p class="lead">If you have never used this before, you have to <a href="signup.php">Sign Up </a>first.</p>
 				  <p class="lead">If you have already Signed Up, you can <a href="Login.php">Log In </a>now.</p>
 			  </div>

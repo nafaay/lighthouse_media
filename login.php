@@ -9,7 +9,8 @@
 	<script
 		src="https://code.jquery.com/jquery-3.4.1.js"
 		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-		crossorigin="anonymous"></script>	
+		crossorigin="anonymous">
+	</script>	
 	<script src="scripts/login.js"></script>			
 </head>  
 <body>
@@ -28,7 +29,7 @@
 					<label for="email_address">Email Address:</label>
 				</div>
 				<div class="col-md-4" id="myForm1">
-					<input type="text" class="form-control" id="email_address" placeholder="Enter Email Address">
+					<input type="text" class="form-control" id="email_address" value = "" placeholder="Enter Email Address">
 				</div>
 				<div class="col-md-6" id="myForm2">
 					<span id="email_address_message"></span>
