@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="https://www.lighthouselabs.ca/">
-				<img src="Images/logo.png" alt="Lighthouse Labs Logo"></a>
+				<img src="images/logo.png" alt="Lighthouse Labs Logo"></a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="index.php">Home</a></li>
