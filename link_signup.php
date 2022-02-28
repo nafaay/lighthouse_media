@@ -8,7 +8,7 @@ if (isset($_POST['$user_name1']) && isset($_POST['$email_address1']) &&
 		$user_name     = $_POST['$user_name1'];
     $email_address = $_POST['$email_address1'];
 		$password      = $_POST['$password1'];	
-		$password      = md5($password);
+		// $password      = md5($password);
 		$request = $connBD->prepare
 					('SELECT email_address FROM user_profile WHERE email_address = :email_address1');
 		$request->bindParam(':email_address1', $email_address);   
