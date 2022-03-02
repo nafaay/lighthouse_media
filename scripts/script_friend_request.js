@@ -14,6 +14,8 @@ $(document).ready(function () {
   function verifyZones() {
     $pass = true;
     $('#email_address_message').text('');
+    $('#email_address_message2').text('');
+    $('#email_address_message3').text('');
     if ($.trim($('#email_address').val()) == '') {
       $pass = false;
       $('#email_address_message').css("color", "red");
