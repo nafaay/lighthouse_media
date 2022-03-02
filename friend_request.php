@@ -11,18 +11,22 @@
 		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 		crossorigin="anonymous">
 	</script>	
-	<script src="scripts/script_login.js"></script>			
+	<script src="scripts/script_friend_request.js"></script>			
 </head>  
 <body>
-
-	<?php
-		$_SESSION['start'] = "index";
-		require_once("header.php") 
-	?> 
-			<h3 class="login">Log In</h3>
-		<h4 class="signup">You need to <a href="signup.php">Sign Up </a>If you are a new User</h4>
-		<br /><br />
-		
+    <?php
+      session_start();
+      $name = "";
+      require_once("header.php");
+      if(isset($_SESSION['user_name'])){
+        $name = $_SESSION['user_name'];
+      }
+    ?>
+    <div class="row">
+	  	<div class="col-md-12" id="welcome">
+		  	<h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
+			</div>
+		</div>
 		<div class="form-group">
 			<div class="col-md-12">
 				<div class="col-md-2">
@@ -32,32 +36,20 @@
 					<input type="text" class="form-control" id="email_address" value = "" placeholder="Enter Email Address">
 				</div>
 				<div class="col-md-6" id="myForm2">
-					<span id="email_address_message"></span>
-				</div>
-			</div>
-			<br /><br /><br />
-			<div class="col-md-12">
-				<div class="col-md-2">
-					<label  for="password">Password:</label>
-				</div>
-				<div class="col-md-4">
-					<input type="password" class="form-control" id="password" value = "" placeholder="Enter Password">
-				</div>
-				<div class="col-md-6">
-					<span id="password_message"></span>
-				</div>
-			</div>
-			<br /><br /><br />
-			<div class="col-md-12">
-				<div class="col-md-2">
-
-				</div>
-				<div class="col-md-4">
-					<button type="submit" id="submit" class="btn btn-primary">Submit</button>
-					<button type="submit" class="btn btn-primary">Clear</button>
-				</div>
-				<div class="col-md-6">
+					<span id="email_address_message"></span><br />
+					<span id="email_address_message2"></span><br />
+					<span id="email_address_message3"></span>
 					
+				</div>
+			</div>
+			<br /><br />
+			<div class="col-md-12">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-4">
+					<button type="submit" id="submit" class="btn btn-primary">Send Friend Request</button>
+				</div>
+				<div class="col-md-6">					
 				</div>
 			</div>
 		</div>
