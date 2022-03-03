@@ -11,6 +11,21 @@
 
   	  <li><a href="MyPictures.php?whereToGo='My'">My Pictures</a></li>
 	    <li><a href="UploadPictures.php">Upload Pictures</a></li>
+    <?php
+        if (!isset($_SESSION['name']))
+        {
+          ?>			
+            <li><a href="login.php">Log In</a></li>	
+          <?php
+        }
+          else
+        {
+          ?>
+            <li><a href="logout.php">Log Out</a></li>	
+          <?php
+        }
+		?>      
+
     </ul>
   </div>
 </nav>

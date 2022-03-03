@@ -17,7 +17,8 @@
 			$_SESSION['user_name'] = $data['user_name'];
 			$_SESSION['email_address'] = $data['email_address'];
 			$_SESSION['id'] = $data['id'];
-			echo "Found";			
+			echo "Found";	
+			$_SESSION['name'] = 'x';		
 		}
 		else
 		{

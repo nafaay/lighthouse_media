@@ -17,6 +17,7 @@
 
 	<?php
 		$_SESSION['start'] = "index";
+		
 		require_once("header.php") 
 	?> 
 			<h3 class="login">Log In</h3>
