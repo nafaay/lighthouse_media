@@ -60,10 +60,9 @@ $(document).ready(function () {
               if ($.trim(data) == 'Same') {
                 $('#email_address_message').css("color", "red");
                 $('#email_address_message').css("fontWeight", "bold");
-                $('#email_address_message').text('You cannot send a request to yourself');
+                $('#email_address_message').text('You cannot send a friend request to yourself');
               }
               else {
-                // if ($.trim(data) == 'Done') {
                 $user = $.trim(data);
                 $text = "Request sent to " +$user;
                 $text2 = "Once " +$user +" will accept you request";
@@ -77,8 +76,6 @@ $(document).ready(function () {
                 $('#email_address_message').text($text);
                 $('#email_address_message2').text($text2);
                 $('#email_address_message3').text($text3);
-
-                // }
               }
             }
           }

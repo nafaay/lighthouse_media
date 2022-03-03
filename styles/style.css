@@ -85,17 +85,17 @@ table th {
         font-size: 13px;
         font-weight: bold;
         padding: 8px;
-        background: #c4ebed;
+        background: #232c2c;
         border-top: 4px solid #aabcfe;
         border-bottom: 1px solid #fff;
-        color: black;
+        color: white;
     }
 
 table td {
         padding: 4px;
-        background: #c4ebed;
+        background: #232c2c;
         border-bottom: 1px solid #fff;
-        color: black;
+        color: white;
         border-top: 1px solid transparent;
 }
 

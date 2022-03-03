@@ -9,7 +9,6 @@
 	<title>LightHouse Labs Social Media Website</title>
   </head>
     <body>  
-
       <?php
         session_start();
         $id = "";
