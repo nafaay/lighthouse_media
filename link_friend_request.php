@@ -32,7 +32,14 @@
 
 		$request->execute();					
 		if ($data = $request->fetch()){
-			echo "FoundRequest";
+			if($data['status'] == 'R'){
+				echo "FoundRequest";
+			}
+			else{
+				if($data['status'] == 'A'){
+					echo "FoundFriend";
+				}
+			}
 		}
 		else{
 			$status = 'R';
@@ -40,7 +47,6 @@
 					VALUES(:friend_requester_id1, :friend_requestee_id1, :status1)');				
 			if ($reqAdd){
 				$reqAdd->execute(array('friend_requester_id1'=>$id_requester,'friend_requestee_id1'=>$id_requestee,'status1'=>$status));								
-				// echo 'Done';
 				echo $user_name;
 				$reqAdd->closeCursor();
 				}

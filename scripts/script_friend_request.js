@@ -57,29 +57,35 @@ $(document).ready(function () {
               $('#email_address_message').text('This request already sent to this User');
             }
             else {
-              if ($.trim(data) == 'Same') {
+              if ($.trim(data) == 'FoundFriend') {
                 $('#email_address_message').css("color", "red");
                 $('#email_address_message').css("fontWeight", "bold");
-                $('#email_address_message').text('You cannot send a friend request to yourself');
+                $('#email_address_message').text('You are already friends');
               }
               else {
-                $user = $.trim(data);
-                $text = "Request sent to " +$user;
-                $text2 = "Once " +$user +" will accept you request";
-                $text3 = 'You will become friends';
-                $('#email_address_message').css("color", "green");
-                $('#email_address_message').css("fontWeight", "bold");
-                $('#email_address_message2').css("color", "green");
-                $('#email_address_message2').css("fontWeight", "bold");
-                $('#email_address_message3').css("color", "green");
-                $('#email_address_message3').css("fontWeight", "bold");
-                $('#email_address_message').text($text);
-                $('#email_address_message2').text($text2);
-                $('#email_address_message3').text($text3);
+                if ($.trim(data) == 'Same') {
+                  $('#email_address_message').css("color", "red");
+                  $('#email_address_message').css("fontWeight", "bold");
+                  $('#email_address_message').text('You cannot send a friend request to yourself');
+                }
+                else {
+                  $user = $.trim(data);
+                  $text = "Request sent to " +$user;
+                  $text2 = "Once " +$user +" will accept you request";
+                  $text3 = 'You will become friends';
+                  $('#email_address_message').css("color", "green");
+                  $('#email_address_message').css("fontWeight", "bold");
+                  $('#email_address_message2').css("color", "green");
+                  $('#email_address_message2').css("fontWeight", "bold");
+                  $('#email_address_message3').css("color", "green");
+                  $('#email_address_message3').css("fontWeight", "bold");
+                  $('#email_address_message').text($text);
+                  $('#email_address_message2').text($text2);
+                  $('#email_address_message3').text($text3);
+                }
               }
             }
           }
-
         });
     }
   }

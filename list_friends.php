@@ -26,7 +26,7 @@
           $email_address = $_SESSION['email_address'];
         }
       ?>
-      <h2>My Friends</h2>
+      <h2>Friends & Requests</h2>
   		<div class="col-md-12" id="welcome">
       	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
 			</div>
@@ -50,39 +50,86 @@
               </div>
             </div>
           </div>
-          <br /><br />
+          <br />
         <?php
         $request = $connBD->prepare('SELECT * FROM friendship');
         $request->execute();
         $array_friends = [];
-        $array_requests = [];
+        $array_received_requests = [];
+        $array_sent_requests = [];
+        $what = "";
 
         while($data = $request->fetch()){
           if($data['status'] == 'A'){
             array_push($array_friends, $data['friend_requestee_id']);
           }
-          if($data['status'] == 'R'){
-            array_push($array_requests, $data['friend_requestee_id']);
+          if($data['status'] == 'R' AND $data['friend_requestee_id'] == $id){
+            array_push($array_received_requests, $data['friend_requester_id']);
+          }
+          if($data['status'] == 'R' AND $data['friend_requester_id'] == $id){
+            array_push($array_sent_requests, $data['friend_requestee_id']);
           }
         }
         if(count($array_friends) == 0){
           ?>
-          <b>No Friends Yet</b>
+          <b style="color: red">No Friends Yet</b><br />
           <?php           
         }
         else{
-          friends_or_requests($array_friends, $connBD);
+          $what = "F";
+          friends_or_requests($array_friends, $connBD, $what);
         }
-        if(count($array_requests) == 0){
+        if(count($array_sent_requests) == 0){
           ?>
-          <b>No Friends' Requests</b>
+          <b style="color: red">No Requests Sent</b> <br />
           <?php           
         }
         else{
-          friends_or_requests($array_requests, $connBD);
+          ?>
+          <br />
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-2">
+                  <b>Requests Sent</b>
+              </div>
+              <div class="col-md-8">
+              </div>
+            </div>
+          </div>
+          <br />
+          <?php
+          $what = "S";
+          friends_or_requests($array_sent_requests, $connBD, $what);
         }
 
-        function friends_or_requests($array_to_call, $connBD){
+        if(count($array_received_requests) == 0){
+          ?>
+          <b style="color: red">No Requests Received</b><br />
+          <?php           
+        }
+        else{
+          ?>
+          <br />
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-2">
+                  <b>Requests Received</b>
+              </div>
+              <div class="col-md-8">
+              </div>
+            </div>
+          </div>
+          <br />
+          <?php
+          $what = "R";
+          friends_or_requests($array_received_requests, $connBD, $what);
+        }
+
+        function friends_or_requests($array_to_call, $connBD, $what){
           ?>
           <div class="row">
             <div class="col-md-12">
@@ -94,8 +141,22 @@
                     <tr>
                       <th scope="col">Email Address</th>
                       <th scope="col">Name</th>
+                      <?php 
+                    if( $what == "F"){ ?>
                       <th scope="col">Shared Albums</th>
                       <th scope="col">De-Friend</th>
+                      <?php
+                      }
+                    if( $what == "R"){ ?>
+                      <th scope="col">Accept Or Deny</th>
+                    <?php  
+                      }
+                       
+                        if( $what == "S"){ ?>
+                      <th scope="col">Remove</th>
+                      <?php  
+                      }
+                      ?>
                     </tr>
                   </thead>
                   <tbody>
@@ -115,7 +176,12 @@
                           ?>
                           <td><?php echo $email_address ?></td>
                           <td><?php echo $name ?></td>
+                          <?php if($what == "F"){
+                            ?>
                           <td><?php echo "N" ?></td>
+                          <?php
+                        }
+                        ?>
                           <td><input type="checkbox"></td>
                     </tr>
                       <?php
@@ -125,6 +191,21 @@
                 </table>
               </div>
               <div  class="col-md-2">
+                <?php 
+                if($what == "F"){ ?>
+                  <button class="btn btn-primary">Defriend</button>
+                <?php
+                }
+                if($what == "R"){ ?>
+                  <button class="btn btn-primary">Accept</button>
+                  <button class="btn btn-primary">Deny</button>
+                <?php
+                }
+                if($what == "S"){ ?>
+                  <button class="btn btn-primary">Remove</button>
+                <?php
+                }
+                ?>
               </div>
             </div>
           </div>      
