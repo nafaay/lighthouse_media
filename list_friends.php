@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="styles/style.css">
+  	<script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous">
+	</script>	
+
+  <script src="scripts/script_list_friends.js"></script>			
+
 	<title>LightHouse Labs Social Media Website</title>
   </head>
     <body>
-      <?php 
+      <?php
         session_start();
       	require_once("connexion.php");
         require_once('header.php');
@@ -19,17 +27,23 @@
         if(isset($_SESSION['user_name'])){
           $name = $_SESSION['user_name'];
         }
+        ?>
+  		  <div class="col-md-12" id="welcome">
+		  	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
+				  <p class="lead">If you have never used this before, you have to <a href="signup.php">Sign Up </a>first.</p>
+				  <p class="lead">If you have already Signed Up, you can <a href="Login.php">Log In </a>now.</p>
+			  </div>
+        <?php
         if(isset($_SESSION['id'])){
             $id = $_SESSION['id'];
         }
         if(isset($_SESSION['email_address'])){
           $email_address = $_SESSION['email_address'];
         }
-      ?>
-      <h2>Friends & Requests</h2>
-  		<div class="col-md-12" id="welcome">
-      	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
-			</div>
+        else{
+          return;
+        }
+        ?>
 
       <div class="row">
         <div class="col-md-12">
@@ -60,9 +74,13 @@
         $what = "";
 
         while($data = $request->fetch()){
-          if($data['status'] == 'A'){
+          if($data['status'] == 'A' AND $data['friend_requester_id'] == $id){
             array_push($array_friends, $data['friend_requestee_id']);
           }
+          if($data['status'] == 'A' AND $data['friend_requestee_id'] == $id){
+            array_push($array_friends, $data['friend_requester_id']);
+          }
+
           if($data['status'] == 'R' AND $data['friend_requestee_id'] == $id){
             array_push($array_received_requests, $data['friend_requester_id']);
           }
@@ -136,7 +154,7 @@
               <div  class="col-md-2">
               </div>
               <div  class="col-md-8">          
-                <table class="table table-stripped table-dark">
+                <table class="table table-stripped table-dark" id="<?php echo"table$what" ?>">
                   <thead>
                     <tr>
                       <th scope="col">Email Address</th>
@@ -164,7 +182,9 @@
                       <?php 
                         $email_address = "";
                         $name = "";
+                        $cpt = 0;
                         foreach($array_to_call as $value){
+                          $cpt++;
                           $request = $connBD->prepare('SELECT * FROM user_profile WHERE id = :value');
                           $request->bindParam(':value', $value);
                           $request->execute();
@@ -174,15 +194,15 @@
                           }
                           
                           ?>
-                          <td><?php echo $email_address ?></td>
+                          <td id="<?php echo "td$what$cpt" ?>"><?php echo $email_address ?></td>
                           <td><?php echo $name ?></td>
                           <?php if($what == "F"){
                             ?>
                           <td><?php echo "N" ?></td>
                           <?php
-                        }
+                          }
                         ?>
-                          <td><input type="checkbox"></td>
+                          <td><input type="checkbox" id="<?php echo "ch$what$cpt" ?>"   value="<?php echo"ch$what$cpt" ?>"    "></td>
                     </tr>
                       <?php
                         }
@@ -193,16 +213,16 @@
               <div  class="col-md-2">
                 <?php 
                 if($what == "F"){ ?>
-                  <button class="btn btn-primary">Defriend</button>
+                	<button type="submit" id="defriend" class="btn btn-primary">Defriend</button>
                 <?php
                 }
                 if($what == "R"){ ?>
-                  <button class="btn btn-primary">Accept</button>
-                  <button class="btn btn-primary">Deny</button>
+                	<button type="submit" id="accept" class="btn btn-primary">Accept</button>
+                	<button type="submit" id="deny" class="btn btn-primary">Deny</button>
                 <?php
                 }
                 if($what == "S"){ ?>
-                  <button class="btn btn-primary">Remove</button>
+                	<button type="submit" id="remove" class="btn btn-primary">Remove</button>
                 <?php
                 }
                 ?>

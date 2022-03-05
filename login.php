@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +54,6 @@
 				</div>
 				<div class="col-md-4">
 					<button type="submit" id="submit" class="btn btn-primary">Submit</button>
-					<button type="submit" class="btn btn-primary">Clear</button>
 				</div>
 				<div class="col-md-6">
 					

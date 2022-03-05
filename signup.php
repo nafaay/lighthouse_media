@@ -72,9 +72,6 @@
 				</div>
 				<div class="col-md-4">
 					<button type="submit" id="submit" class="btn btn-primary">Submit</button>
-					<button type="submit" class="btn btn-primary">
-						<a class="clear" href="signup.php">Clear</a>
-					</button>
 				</div>
 				<div class="col-md-6">
 					
