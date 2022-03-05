@@ -18,7 +18,8 @@
 			$_SESSION['email_address'] = $data['email_address'];
 			$_SESSION['id'] = $data['id'];
 			echo "Found";	
-			$_SESSION['name'] = 'x';		
+			$_SESSION['name'] = 'x';
+		
 		}
 		else
 		{
@@ -30,6 +31,5 @@
 		echo 'Fail';
 	}	
 	$request->closeCursor();
-	
 ?>
 
