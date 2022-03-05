@@ -3,6 +3,8 @@ $(document).ready(function () {
   let arrayEmailsToDefriend;
   let arrayEmailsToAccept;
   let arrayEmailsToRemove;
+  let arrayEmailsToDeny;
+
 
 
 
@@ -128,31 +130,68 @@ $(document).ready(function () {
   }
 
 
+  // function verifyZonesDeny() {
+  //   cpt = -1;
+  //   $('#tableR').find('tr').each(function () {
+  //     cpt++;
+  //     let row = $(this);
+  //     boolDeny = false;
+  //     if (row.find('input[type="checkbox"]').is(':checked')) {
+  //       boolDeny = true;
+  //       console.log("chR" + cpt + " " + $("#chR" + cpt).prop("checked"));
+  //       console.log("is checked in Deny");
+  //       console.log("tdR" + cpt + " " + $("#tdR" + cpt).text());
+
+  //     }
+  //   })
+  //   if (boolDeny) {
+  //     if (confirm("Are you sure you want to Deny selection?")) {
+  //       //defriendFriends();
+  //       //verify();
+  //       $('#msg').css("color", "green");
+  //       $('#msg').css("fontWeight", "bold");
+  //       // $('#msg').text("Friendship removed");
+  //     }
+  //     else {
+  //       return;
+  //     }
+  //   }
+  // }
+
+////////////////////////////////////////////////
+
   function verifyZonesDeny() {
+    arrayEmailsToDeny = [];
+    let boolDeny = false;
     cpt = -1;
     $('#tableR').find('tr').each(function () {
       cpt++;
       let row = $(this);
-      boolDeny = false;
       if (row.find('input[type="checkbox"]').is(':checked')) {
         boolDeny = true;
-        console.log("chR" + cpt + " " + $("#chR" + cpt).prop("checked"));
-        console.log("is checked in Deny");
-        console.log("tdR" + cpt + " " + $("#tdR" + cpt).text());
-
+        arrayEmailsToDeny.push($("#tdR" + cpt).text());
       }
     })
     if (boolDeny) {
       if (confirm("Are you sure you want to Deny selection?")) {
-        //defriendFriends();
-        //verify();
+        denyFriends(arrayEmailsToDeny);
+        location.replace('list_friends.php');
         $('#msg').css("color", "green");
         $('#msg').css("fontWeight", "bold");
-        // $('#msg').text("Friendship removed");
       }
       else {
         return;
       }
     }
+  }
+
+  function denyFriends(arrayToDeny) {
+    arrayToDeny.forEach(element => {
+      $.post('link_list_friends_deny.php', {
+        email_address1: element
+      },
+        function (data) {
+        });
+    });
   }
 });
