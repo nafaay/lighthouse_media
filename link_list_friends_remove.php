@@ -8,7 +8,8 @@
 		$id_requestee = 0;
 		$email_address = $_POST['email_address1'];
 		$request = $connBD->prepare('SELECT id  FROM user_profile 
-																WHERE email_address = :email_address1');
+																WHERE email_address = :email_address1'
+															);
 		$request->bindParam(':email_address1', $email_address);   
 		$request->execute();				
 		if ($data = $request->fetch()){

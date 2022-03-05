@@ -92,19 +92,16 @@ $(document).ready(function () {
     });
   }
 
-/////////////////////////////////////////
-
-
   function verifyZonesRemove() {
     arrayEmailsToRemove = [];
     let boolRemove = false;
     cpt = -1;
-    $('#tableR').find('tr').each(function () {
+    $('#tableS').find('tr').each(function () {
       cpt++;
       let row = $(this);
       if (row.find('input[type="checkbox"]').is(':checked')) {
         boolRemove = true;
-        arrayEmailsToRemove.push($("#tdR" + cpt).text());
+        arrayEmailsToRemove.push($("#tdS" + cpt).text());
       }
     })
     if (boolRemove) {
@@ -129,11 +126,6 @@ $(document).ready(function () {
         });
     });
   }
-
-
-///////////////////////////////////////////////////
-
-
 
 
   function verifyZonesDeny() {
@@ -163,32 +155,4 @@ $(document).ready(function () {
       }
     }
   }
-  // function verifyZonesRemove() {
-  //   cpt = -1;
-  //   let boolRemove = false;
-  //   $('#tableS').find('tr').each(function () {
-  //     cpt++;
-  //     let row = $(this);
-  //     if (row.find('input[type="checkbox"]').is(':checked')) {
-  //       boolRemove = true;
-  //       console.log("chS" + cpt + " " + $("#chS" + cpt).prop("checked"));
-  //       console.log("is checked in Remove");
-  //       console.log("tdS" + cpt + " " + $("#tdS" + cpt).text());
-
-  //     }
-  //   })
-  //   if (boolRemove) {
-  //     if (confirm("Are you sure you want to Remove selection?")) {
-  //       //defriendFriends();
-  //       //verify();
-  //       $('#msg').css("color", "green");
-  //       $('#msg').css("fontWeight", "bold");
-  //       // $('#msg').text("Friendship removed");
-  //     }
-  //     else {
-  //       return;
-  //     }
-  //   }
-  // }
-
 });
