@@ -9,8 +9,8 @@
       <li><a href="list_friends.php">Friends & Requests</a></li>
       <li><a href="list_albums.php">My Albums</a></li>
 
-  	  <li><a href="MyPictures.php?whereToGo='My'">My Pictures</a></li>
-	    <li><a href="UploadPictures.php">Upload Pictures</a></li>
+  	  <li><a href="list_images.php">My Images</a></li>
+	    <li><a href="UploadPictures.php">Upload Images</a></li>
     <?php
         if (!isset($_SESSION['name']))
         {

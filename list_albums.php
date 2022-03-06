@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="Styles/Style.css">
 	<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-	<link rel="stylesheet" href="Styles/Style.css">
+	<link rel="stylesheet" href="styles/style.css">
   </head>
   <body>  
       <?php
