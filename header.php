@@ -7,7 +7,7 @@
     <ul class="nav navbar-nav">
       <li><a href="index.php">Home</a></li>
       <li><a href="list_friends.php">Friends & Requests</a></li>
-      <li><a href="MyAlbums.php">My Albums</a></li>
+      <li><a href="list_albums.php">My Albums</a></li>
 
   	  <li><a href="MyPictures.php?whereToGo='My'">My Pictures</a></li>
 	    <li><a href="UploadPictures.php">Upload Pictures</a></li>
