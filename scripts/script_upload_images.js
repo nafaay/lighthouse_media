@@ -48,8 +48,6 @@ $(document).ready(function () {
       title = $.trim($('#title').val());
       description = $.trim($('#description').val());
 
-      console.log("title "+title);
-      console.log("description " + description);
       array_album_id = album_id_title.split(" ");
       album_id = array_album_id[2];
       album_title = array_album_id[4];

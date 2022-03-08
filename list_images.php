@@ -51,7 +51,7 @@
 											$album_id = $data['id'];
 											if($cpt == 1){
 												?>
-												<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="access"><?php echo "Album Id: ".$album_id." Title: ".$title; ?>
+												<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="access" name="access"><?php echo "Album Id: ".$album_id." Title: ".$title; ?>
 												<span id="caret" class="caret"></span></button>
 												<ul class="dropdown-menu">
 											<?php
@@ -69,13 +69,30 @@
 					if($cpt == 0 AND trim($name) != ""){
 						?>
 						<b style="color: red";>You have to create album(s) first</b>
-					<?php 
-					}
-					$request = $connBD->prepare('SELECT * FROM image WHERE album_id = :id');
-					$request->bindParam(':id', $id);
-					$request->execute();
 
+					<?php
+					// return; 
+					}
+					// if(isset($_GET['access'])){
+					// 	echo $album_id;
+					// 	return;
+					// }
+
+					$request = $connBD->prepare('SELECT * FROM image WHERE album_id = :albumid');
+					$request->bindParam(':albumid', $album_id);
+					$request->execute();
 					?>
+					<ul>
+						<?php
+					while($data = $request->fetch()){
+						$filename = $data['filename'];
+					  ?>
+						<li><?php echo $album_id; ?></li>
+						<li><?php echo $filename; ?></li>
+						<?php
+					}
+					?>
+					</ul>
 				<div class="col-md-12">
 					<div class="col-md-2">
 					</div>
