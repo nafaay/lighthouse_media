@@ -11,8 +11,4 @@ $(document).ready(function () {
     $(this).css('background-color', 'black');
     $(this).css('color', 'white');
   })
-
-
-
-
 });

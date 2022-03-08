@@ -10,7 +10,7 @@
       <li><a href="list_albums.php">My Albums</a></li>
 
   	  <li><a href="list_images.php">My Images</a></li>
-	    <li><a href="UploadPictures.php">Upload Images</a></li>
+	    <li><a href="upload_images.php">Upload Images</a></li>
     <?php
         if (!isset($_SESSION['name']))
         {

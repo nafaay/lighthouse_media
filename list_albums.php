@@ -57,6 +57,7 @@
           $email_address = $_SESSION['email_address'];
         }
         else{
+					require_once("footer.php");
           return;
         }
 				$cpt = 0;

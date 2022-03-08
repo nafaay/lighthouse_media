@@ -48,16 +48,16 @@
 										while($data = $request->fetch()){
 											$cpt++;
 											$title = $data['title'];
-											
+											$album_id = $data['id'];
 											if($cpt == 1){
 												?>
-												<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="access"><?php echo $title; ?>
+												<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="access"><?php echo "Album Id: ".$album_id." Title: ".$title; ?>
 												<span id="caret" class="caret"></span></button>
 												<ul class="dropdown-menu">
 											<?php
 											}
 											?>
-												<li class="title"><?php echo $title; ?></li>
+												<li class="title" style="padding: 6px"><?php echo "Album Id: ".$album_id." Title: ".$title; ?></li>
 									<?php 
 								}
 								?>
@@ -66,11 +66,15 @@
 						</div>
 					</div>
 						<?php
-					if($cpt == 0){
+					if($cpt == 0 AND trim($name) != ""){
 						?>
 						<b style="color: red";>You have to create album(s) first</b>
 					<?php 
 					}
+					$request = $connBD->prepare('SELECT * FROM image WHERE album_id = :id');
+					$request->bindParam(':id', $id);
+					$request->execute();
+
 					?>
 				<div class="col-md-12">
 					<div class="col-md-2">

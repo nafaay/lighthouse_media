@@ -39,9 +39,6 @@ $(document).ready(function () {
       $('#titleMessage').css("fontWeight", "bold");
       $('#titleMessage').text('The Title is required');
     }
-
-
-
     if ($pass == true) {
 
       title = $.trim($('#title').val());
