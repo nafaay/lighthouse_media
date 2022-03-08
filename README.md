@@ -1,1 +1,1 @@
-"# lighthouse_media" 
+![Main Page](readme_images/main_page.png)
