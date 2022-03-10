@@ -129,37 +129,6 @@ $(document).ready(function () {
     });
   }
 
-
-  // function verifyZonesDeny() {
-  //   cpt = -1;
-  //   $('#tableR').find('tr').each(function () {
-  //     cpt++;
-  //     let row = $(this);
-  //     boolDeny = false;
-  //     if (row.find('input[type="checkbox"]').is(':checked')) {
-  //       boolDeny = true;
-  //       console.log("chR" + cpt + " " + $("#chR" + cpt).prop("checked"));
-  //       console.log("is checked in Deny");
-  //       console.log("tdR" + cpt + " " + $("#tdR" + cpt).text());
-
-  //     }
-  //   })
-  //   if (boolDeny) {
-  //     if (confirm("Are you sure you want to Deny selection?")) {
-  //       //defriendFriends();
-  //       //verify();
-  //       $('#msg').css("color", "green");
-  //       $('#msg').css("fontWeight", "bold");
-  //       // $('#msg').text("Friendship removed");
-  //     }
-  //     else {
-  //       return;
-  //     }
-  //   }
-  // }
-
-////////////////////////////////////////////////
-
   function verifyZonesDeny() {
     arrayEmailsToDeny = [];
     let boolDeny = false;

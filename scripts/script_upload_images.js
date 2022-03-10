@@ -70,7 +70,6 @@ $(document).ready(function () {
         description1: description,
         filename1: filename
       }, function(data){
-        console.log(data);
         if(data == 'Done'){
           $('#titleMessage').css("color", "green");
           $('#titleMessage').css("fontWeight", "bold");

@@ -33,41 +33,40 @@
 		  	<div class="col-md-12" id="welcome">
 		  	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
 			  </div>
-						<div class="col-md-6">
-						<select name="album" id="album">
-						<?php
-							
-							// if (isset ($_SESSION['fromGet']))
-							// 	{
-							// 		if (isset ($_SESSION["idFriend"]))
-							// 			{
-							// 				$access = "shared";
-							// 				$friendId = $_SESSION["idFriend"];
-							// 				$request = $connBD->prepare("SELECT * FROM album WHERE Owner_Id = '$friendId'
-							// 								AND Accessibility_Code = '$access'");
-							// 			}
-							// 	}
-							// else
-							$request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :id');
-							$request->bindParam(':id', $id);
-							$request->execute();
-							$cpt = 0;
-							while ($data = $request->fetch())
-								{
-									$cpt++;
-									$album_id = $data['id'];
-									$owner_id = $data['owner_id'];
-									$title = $data['title'];
-									?>
-										<option value="<?php echo($album_id);?>">										
-										<?php echo($title);?>
-										</option>
+
+					<?php
+					$request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :id');
+					$request->bindParam(':id', $id);
+					$request->execute();
+					$cpt=0;
+					 ?>
+					 <div class="col-md-12">
+						<div class="col-md-2">
+						</div>
+						<div class="col-md-4">
+							<div class="dropdown">
 									<?php
+										while($data = $request->fetch()){
+											$cpt++;
+											$title = $data['title'];
+											$album_id = $data['id'];
+											if($cpt == 1){
+												?>
+												<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="access" name="access"><?php echo "Album Id: ".$album_id." Title: ".$title; ?>
+												<span id="caret" class="caret"></span></button>
+												<ul class="dropdown-menu">
+											<?php
+											}
+											?>
+												<li class="title" style="padding: 6px"><?php echo "Album Id: ".$album_id." Title: ".$title; ?></li>
+									<?php 
 								}
 								?>
-						</select>
-				</div>
-				<?php
+								</ul>
+							</div>        
+						</div>
+					</div>
+						<?php
 					if($cpt == 0 AND trim($name) != ""){
 						?>
 						<b style="color: red";>You have to create album(s) first</b>

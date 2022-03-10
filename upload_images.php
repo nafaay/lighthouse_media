@@ -39,6 +39,15 @@
 		<h5>Accepted images types: JPG(JPEG), GIF and PNG</h5>
 		<h5>You can upload multiple images at a time by pressing the shift key while selecting images</h5>
 		<h5>When uploading multiple images, the title and description fields will be applied to all images </h5>
+		<?php
+			if(isset($_FILES['file'])){
+				echo "yes";
+			} 
+			else{
+				echo "no";
+			}
+		?>
+
 		<form enctype="multipart/form-data" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 		
 					<?php
