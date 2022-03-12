@@ -1,38 +1,39 @@
-body{
+body {
 	margin: 15px;
 	margin-left: 25px;
 	background-color: #f0d5d3;
 }
 
-span{
+span {
 	color: red;
 	font-weight: bold;
 }
 
-.container-fluid{
+.container-fluid {
 	background-color: #4d4246;
 }
 
-#msg{
+#msg {
 	display: none;
 }
 
-.nav.navbar-nav li a, .btn.btn-primary a{
+.nav.navbar-nav li a,
+.btn.btn-primary a {
 	color: white;
 }
 
-.nav.navbar-nav li a:hover{
+.nav.navbar-nav li a:hover {
 	color: red;
 }
 
-.footer{
+.footer {
 	background-color: green;
 	color: white;
 	text-align: center;
 	margin-top: 42%;
 }
 
-.footText{
+.footText {
 	background-color: black;
 	height: 43px;
 	text-align: center;
@@ -40,132 +41,137 @@ span{
 	padding-top: 5px;
 }
 
-h3{
+h3 {
 	text-align: center;
 }
-.dropdown{
+.dropdown {
 	position: relative;
-	
 }
 
-.col-md-4, .col-md-6{
+.col-md-4,
+.col-md-6 {
 	font-weight: bold;
 }
 
-#accessibility, #description, #upToAlbum, #fileUpload{
-    width : 320px;
-    height : 35px;
-    font-size: 16px;
-    border: groove;
+#accessibility,
+#description,
+#upToAlbum,
+#fileUpload {
+	width: 370px;
+	height: 15px;
+	font-size: 16px;
+	border: groove;
 	border-radius: 7px;
 }
 #accessibility:hover {
-    background: #bdd4f9;
+	background: #bdd4f9;
 }
 
-#title{
+#title {
 	width: 320px;
 }
 
-#description{
-	height: 200px;
+#description {
+	height: 100px;
 }
 
-
 table {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 12px;
-    margin: 0 auto;
-    width: 720px;
-    text-align: left;
-    border-collapse: collapse;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 0 auto;
+	width: 720px;
+	text-align: left;
+	border-collapse: collapse;
 }
 
 table th {
-        font-size: 13px;
-        font-weight: bold;
-        padding: 8px;
-        background: #232c2c;
-        border-top: 4px solid #aabcfe;
-        border-bottom: 1px solid #fff;
-        color: white;
-    }
-
-table td {
-        padding: 4px;
-        background: #232c2c;
-        border-bottom: 1px solid #fff;
-        color: white;
-        border-top: 1px solid transparent;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 8px;
+	background: #232c2c;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: white;
 }
 
-.year, .term{
+table td {
+	padding: 4px;
+	background: #232c2c;
+	border-bottom: 1px solid #fff;
+	color: white;
+	border-top: 1px solid transparent;
+}
+
+.year,
+.term {
 	color: #339;
 	background-color: #e8ceda;
 	font-weight: bold;
 }
 
-#nbHours, #reste{
+#nbHours,
+#reste {
 	color: blue;
 }
 
-
-h1, h2, h5{
+h1,
+h2,
+h5 {
 	text-align: center;
 }
 
-.c4{
-	width : 280px;
-    height : 34px;
-    font-size: 14px;
+.c4 {
+	width: 280px;
+	height: 34px;
+	font-size: 14px;
 
 	border-radius: 7px;
 
 	color: black;
 }
-a{
+a {
 	color: blue;
 	font-weight: bold;
 }
 
-.c2{
-	width : 380px;
+.c2 {
+	width: 380px;
 }
 
-.name{
+.name {
 	color: #0a1f66;
 }
 
-#between{
+#between {
 	height: 20px;
 }
 
-#album {
-    width : 250px;
-    height : 30px;
-    font-size: 16px;
-    border: groove;
-    background: #bdd4f9;
+#album,
+#upToAlbum {
+	width: 250px;
+	height: 30px;
+	font-size: 16px;
+	border: groove;
+	background: #bdd4f9;
 	border-radius: 7px;
 }
 #album:hover {
-    background: #bdd4f9;
+	background: #bdd4f9;
 }
 
-div#gHolder{
+div#gHolder {
 	width: 550px;
 	height: 550px;
 	padding: 10px;
 	background-color: silver;
 	float: left;
-	
 }
 
-#titlePicture{
+#titlePicture {
 	font-weight: bold;
 	color: blue;
 }
-div#gHolderRight1{
+div#gHolderRight1 {
 	width: 400px;
 	height: 120px;
 	background-color: #6c88b7;
@@ -173,21 +179,21 @@ div#gHolderRight1{
 	border: 2px solid black;
 	border-radius: 7px;
 }
-div#gHolderRight2{
+div#gHolderRight2 {
 	width: 400px;
-	height: 220px;	
-	overflow-y:scroll;
+	height: 220px;
+	overflow-y: scroll;
 	color: black;
 	margin-top: 15px;
 	border: 2px solid black;
 	border-radius: 7px;
 }
 
-.colComment{
+.colComment {
 	color: blue;
 	font-weight: bold;
 }
-div#gHolderRight3{
+div#gHolderRight3 {
 	width: 400px;
 	height: 120px;
 	background-color: white;
@@ -196,7 +202,8 @@ div#gHolderRight3{
 	border-radius: 7px;
 }
 
-#textAreaWriteComments, #textAreaShowComments{
+#textAreaWriteComments,
+#textAreaShowComments {
 	width: 100%;
 	height: 100%;
 	background-color: white;
@@ -206,33 +213,31 @@ div#gHolderRight3{
 	color: black;
 }
 
-div#gHolderRight4{
+div#gHolderRight4 {
 	width: 420px;
 	height: 50px;
 	background-color: #c4ebed;
 	margin-top: 10px;
-	
 }
 
-#rotateLeft{
+#rotateLeft {
 	transform: scaleX(-1);
 }
 
-.icons{
-	width: 220px; 
+.icons {
+	width: 220px;
 }
 
-div#theBigImageHolder{
+div#theBigImageHolder {
 	width: 440px;
 	height: 440px;
 	margin-left: 0;
 	padding-left: 0;
 	margin-top: 10px;
 	padding-top: 10px;
-
 }
 
-div#thumbnailsHolder{
+div#thumbnailsHolder {
 	width: 440px;
 	height: 100px;
 	background-color: white;
@@ -240,31 +245,26 @@ div#thumbnailsHolder{
 	padding: 5px;
 	overflow: auto;
 	display: inline-block;
-    
 }
 
-#bigImage 
-{
+#bigImage {
 	width: 100%;
 	height: 100%;
-	border-radius: 7px;	
+	border-radius: 7px;
 	position: relative;
 }
 
-
-#clock{
-	
+#clock {
 	top: 360px;
 	left: 450px;
 	position: absolute;
-	font-size:48px;
+	font-size: 48px;
 	height: 20px;
 	width: 20px;
-	color:blue;
-	
+	color: blue;
 }
 
-div#thumbnailsHolder > img{
+div#thumbnailsHolder > img {
 	height: 100%;
 	width: 100px;
 	display: block;
@@ -274,11 +274,15 @@ div#thumbnailsHolder > img{
 	position: relative;
 }
 
-div#thumbnailsHolder > img:hover{
+div#thumbnailsHolder > img:hover {
 	border: 2px solid blue;
 	border-radius: 7px;
 }
 
-#userId, #authorId, #dateTime, #nameUser, #temp{
+#userId,
+#authorId,
+#dateTime,
+#nameUser,
+#temp {
 	visibility: hidden;
 }

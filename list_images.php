@@ -33,21 +33,13 @@
 		  	<div class="col-md-12" id="welcome">
 		  	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
 			  </div>
+				<?php if(trim($name) == ""){
+					return;
+				}
+				?>
 						<div class="col-md-6">
 						<select name="album" id="album">
 						<?php
-							
-							// if (isset ($_SESSION['fromGet']))
-							// 	{
-							// 		if (isset ($_SESSION["idFriend"]))
-							// 			{
-							// 				$access = "shared";
-							// 				$friendId = $_SESSION["idFriend"];
-							// 				$request = $connBD->prepare("SELECT * FROM album WHERE Owner_Id = '$friendId'
-							// 								AND Accessibility_Code = '$access'");
-							// 			}
-							// 	}
-							// else
 							$request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :id');
 							$request->bindParam(':id', $id);
 							$request->execute();
@@ -85,8 +77,8 @@
 						<?php require_once("footer.php") ?>
 					</div>
 		
-				<div class="col-md-2">
-				</div>
+					<div class="col-md-2">
+					</div>
 				</div>
   </body>
 </html>
