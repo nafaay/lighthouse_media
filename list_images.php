@@ -33,7 +33,12 @@
 		  	<div class="col-md-12" id="welcome">
 		  	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
 			  </div>
-				<?php if(trim($name) == ""){
+				<?php if(trim($name) == "" || !isset($_SESSION['new_album'])){
+					?>
+			  	<div class="col-md-12" id="welcome">
+			  	  <h3 style="color: red">You have No  Album Created Yet</h3>	
+				  </div>
+					<?php
 					return;
 				}
 				?>

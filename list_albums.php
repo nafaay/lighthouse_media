@@ -115,7 +115,7 @@
 					}
 					else{
 					?>
-						<b style="color: red";>No album created yet</b>
+						<b style="color: red; font-size: 16px";>No album created yet</b>
 					<?php
 						return;
 					}

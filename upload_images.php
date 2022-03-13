@@ -1,10 +1,13 @@
 <?php
 	session_start();
   require_once('header.php');
-
+	$title_images = "";
+	$description = "";
   if(isset($_POST['submit'])){
+		$upload_to_album = $_POST['upload_to_album'];
     $file = $_FILES['file'];
-
+		$title_images = $_POST['title_images'];
+		$description = $_POST['description'];
     $fileName = $_FILES['file']['name'];
     $fileTmpName = $_FILES['file']['tmp_name'];
     $fileSize = $_FILES['file']['size'];
@@ -38,7 +41,7 @@
           $errorType = true;
         }
       }
-      if(array_sum($fileSize) > 1000000){
+      if(array_sum($fileSize) > 1000000000){				
         $errorSize = true;
       }
       foreach($fileError as $error){
@@ -60,13 +63,53 @@
             $messageError =  "Issue uploading file(s)";
           }
           else{
-            require_once('connexion.php');
-            $messageSuccess =  "Image(s) uploaded with Success";
+						if(trim($title_images) == ""){
+							$messageError = "Title is required";
+						}
+						else{
+							if(trim($description) == ""){
+								$messageError = "Give some description to this Album";
+							}
+						else{
+							$file_to_upload = "";
+							$local_image = "images/albums/";
+
+							$nbPictures = count($_FILES['file']['name']);		
+							for ($i=0; $i<$nbPictures; $i++){
+								$name_file= $_FILES['file']['name'][$i];
+								$tmp_name = $_FILES['file']['tmp_name'][$i];
+								$file_to_upload .= $name_file;
+								move_uploaded_file($tmp_name, $local_image.$name_file);	
+								if ($i<$nbPictures - 1)
+										$file_to_upload .= ",";
+							}
+	            require_once('connexion.php');
+
+							date_default_timezone_set("America/Toronto");
+							$date 			= date('Y-m-d');
+
+							$reqAdd = $connBD->prepare('INSERT INTO image(album_Id, fileName, title, description, date_added) 
+							VALUES(:upload_to_album1, :file_to_upload1, :title_images1, :description1, :date1)');				
+							if ($reqAdd){
+								$reqAdd->execute(array('upload_to_album1'=>$upload_to_album, 
+								'file_to_upload1'=>$file_to_upload, 
+								'title_images1'=>$title_images, 
+								'description1'=>$description, 
+								'date1'=>$date
+								));					
+								$reqAdd->closeCursor(); 
+								echo '';
+							}
+							else
+								echo 'Fail Creation';
+							}
+							$messageSuccess =  "Image(s) uploaded with Success";
+						}
           }
         }
       }
     }
-  }
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,22 +143,29 @@
 			  	<div class="col-md-12" id="welcome">
 		  	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
 			  </div>
-				<?php if(trim($name) == ""){
+				<?php if(trim($name) == "" || !isset($_SESSION['new_album'])){
+				?>
+			  	<div class="col-md-12" id="welcome">
+			  	  <h3 style="color: red">You have No  Album Created Yet</h3>	
+				  </div>
+				<?php
+
 					return;
 				}
 				?>
+				<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
 		<div class="col-md-12">
 				<div class="col-md-2">
-					<label  for="upToAlbum">Upload to Album:</label>
+					<label  for="upload_to_album">Upload to Album:</label>
 				</div>
 				<div class="col-md-4">
 				
-					<select name="upToAlbum" id="upToAlbum">
-					
+					<select name="upload_to_album" id="upload_to_album">
+
 					<?php
-						$userId = $_SESSION['Id'];
-						$request = $connBD->prepare('SELECT * FROM album WHERE owner_Id = :userId');
-						$request->bindParam(':userId', $id);  
+						$user_id = $_SESSION['id'];
+						$request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :user_id');
+						$request->bindParam(':user_id', $id);  
 						$request->execute();
 
 						$cpt=0;
@@ -124,7 +174,7 @@
 									$album_id = $data['id'];
 									$title = $data['title'];
 									?>
-									<option value="<?php echo($id);?>">										
+									<option value="<?php echo($album_id);?>">										
 										<?php echo($title);?></option>
 									<?php		
 							}
@@ -139,30 +189,41 @@
 				</div>
 			</div>
 			<br /><br /><br />
-				<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
 				<div class="col-md-12">
 					<div class="col-md-2">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="form-group">
 							<input type="file" name="file[]" class="form-control" multiple>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
 					</div>
 				</div>
 				<br /><br /><br />
 				<div class="col-md-12">
 					<div class="col-md-2">
+						<label  for="title_images">Title:</label>
+					</div>
+					<div class="col-md-6">
+						<input type="text" name="title_images" class="form-control" id="title_images" value="<?php echo $title_images;?>">
+					</div>
+					<div class="col-md-4">
+						<span id="title_message"></span>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="col-md-2">
 						<label  for="description">Description:</label>
 					</div>
-					<div class="col-md-4">					
+					<div class="col-md-6">					
 						<div class="form-group">
 							<textarea class="form-control" name="description" id="description" cols="30" rows="8">
+								<?php echo $description;?>
 							</textarea>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<span id="descriptionMessage"></span>
 					</div>
 				</div>
@@ -184,7 +245,7 @@
       if(isset($_POST['submit'])){
         if($messageError != ""){
           ?>
-          <div class="col-auto" style="color: red";>
+          <div class="col-auto" style="color: red; font-weight: bold; font-size: 16">
             <?php
               echo $messageError;
             ?>
@@ -193,7 +254,8 @@
         }
         else{
           ?>
-          <div class="col-auto" style="color: green";>
+            <div class="col-auto" style="color: green; font-weight: bold; font-size: 16">
+
             <?php
               echo $messageSuccess;
             ?>
@@ -203,14 +265,14 @@
       }
       ?>
 				<div class="col-md-12">
-					<div class="col-md-2" syle="background-color: red">
+					<div class="col-md-2">
 					</div>
 
 					<div class="col-md-10">
 						<?php require_once("footer.php") ?>
 					</div>
 		
-					<div class="col-md-2" syle="background-color: red">
+					<div class="col-md-2">
 					</div>
 				</div>
   </body>
