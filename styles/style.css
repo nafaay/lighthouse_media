@@ -10,7 +10,8 @@ span {
 }
 
 .container-fluid {
-	background-color: #4d4246;
+	background-color: #afbcf0;
+	color: #263261;
 }
 
 #msg {
@@ -19,25 +20,24 @@ span {
 
 .nav.navbar-nav li a,
 .btn.btn-primary a {
-	color: white;
+	color: #263261;
 }
 
 .nav.navbar-nav li a:hover {
-	color: red;
+	color: blue;
 }
 
 .footer {
-	background-color: green;
-	color: white;
+	background-color: #afbcf0;
+	color: #263261;
 	text-align: center;
 	margin-top: 42%;
 }
 
 .footText {
-	background-color: black;
+	background-color: #afbcf0;
 	height: 43px;
 	text-align: center;
-	color: white;
 	padding-top: 5px;
 }
 
@@ -57,7 +57,7 @@ h3 {
 #upload_to_album,
 #fileUpload {
 	width: 370px;
-	height: 15px;
+	height: 35px;
 	font-size: 16px;
 	border: groove;
 	border-radius: 7px;
@@ -87,10 +87,10 @@ table th {
 	font-size: 13px;
 	font-weight: bold;
 	padding: 8px;
-	background: #232c2c;
+	background: #afbcf0;
 	border-top: 4px solid #aabcfe;
 	border-bottom: 1px solid #fff;
-	color: white;
+	color: #263261;
 }
 
 table td {

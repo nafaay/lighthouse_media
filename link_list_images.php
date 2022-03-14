@@ -16,8 +16,8 @@
 			array_push($array_images, $filename);		
 		}
 		$images = implode(',', $array_images);
+		$_SESSION['images'] = $images;
+		
 		echo $images;
-
 }	
-?>
 

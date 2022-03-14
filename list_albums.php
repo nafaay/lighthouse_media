@@ -60,16 +60,25 @@
           return;
         }
 				$cpt = 0;
-				$nbreOfPictures = 0;
 				$request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :id');
 				$request->bindParam(':id', $id);
 				$request->execute();
 				while($data = $request->fetch()){
+					$nbreOfPictures = 0;
 					$cpt++;
+					$album_id = $data['id'];
 					$title = $data['title'];
 					$description = $data['description'];
 					$date_updated = $data['date_updated'];
 					$shared = $data['shared'];
+
+					$request_images = $connBD->prepare('SELECT * FROM image WHERE album_id = :album_id1');
+					$request_images->bindParam(':album_id1', $album_id);
+					$request_images->execute();
+					while($data_images = $request_images->fetch()){
+						$filename = $data_images['filename'];
+						$nbreOfPictures += count(explode(',', $filename));
+					}
 					?>
 					<br /><br />
 					<?php
@@ -86,7 +95,7 @@
 													<th scope="col" style="text-align: center;">Title</th>
 													<th scope="col" style="text-align: center;">Description</th>
 													<th scope="col" style="text-align: center;">Date</th>
-													<th scope="col" style="text-align: center;">Number Of Pictures</th>
+													<th scope="col" style="text-align: center;">Number Of Images</th>
 													<th scope="col" style="text-align: center;">Accessibility</th>
 												</tr>
 											</thead>
@@ -105,6 +114,7 @@
 										<?php 
 							}
 							if($cpt > 0){
+								$_SESSION['albums'] = 'created';
 
 							?>
                   </tbody>

@@ -26,6 +26,17 @@
           if(isset($_SESSION['id'])){
             $id = $_SESSION['id'];
           }
+          require_once('connexion.php');
+          $request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :id');
+				  $request->bindParam(':id', $id);
+				  $request->execute();
+				  if($data = $request->fetch()){
+            $_SESSION['albums'] = 'created';
+          }
+          else{
+          }
+
+
           if(isset($_SESSION['email_address'])){
             $email_address = $_SESSION['email_address'];
           }

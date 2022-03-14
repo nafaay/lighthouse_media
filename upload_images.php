@@ -143,13 +143,16 @@
 			  	<div class="col-md-12" id="welcome">
 		  	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
 			  </div>
-				<?php if(trim($name) == "" || !isset($_SESSION['new_album'])){
-				?>
+				<?php if(trim($name) == ""){
+					return;
+				}
+
+				if(!isset($_SESSION['albums'])){
+					?>
 			  	<div class="col-md-12" id="welcome">
 			  	  <h3 style="color: red">You have No  Album Created Yet</h3>	
 				  </div>
-				<?php
-
+					<?php
 					return;
 				}
 				?>
@@ -212,11 +215,14 @@
 						<span id="title_message"></span>
 					</div>
 				</div>
+				<br><br><br>
 				<div class="col-md-12">
 					<div class="col-md-2">
+						<br />
 						<label  for="description">Description:</label>
 					</div>
-					<div class="col-md-6">					
+					<div class="col-md-6">
+						<br />					
 						<div class="form-group">
 							<textarea class="form-control" name="description" id="description" cols="30" rows="8">
 								<?php echo $description;?>

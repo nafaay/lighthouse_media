@@ -1,5 +1,8 @@
 $(document).ready(function () {
-  
+
+  $('#title').on('focus', function () {
+    $('#titleMessage').text('');
+  })
   let shared = 'N';
   $('#private').on('click', function () {
     $('#access').text('Private');
@@ -8,7 +11,7 @@ $(document).ready(function () {
   $('#public').on('click', function () {
     $('#access').text('Public');
   })
-  
+
   $('#private').on('mouseover', function () {
     $('#private').css('background-color', 'black');
     $('#private').css('color', 'white');
@@ -42,11 +45,11 @@ $(document).ready(function () {
     if ($pass == true) {
 
       title = $.trim($('#title').val());
-      if($('#access').text() == 'Private'){
-        shared = 'N';        
+      if ($('#access').text() == 'Private') {
+        shared = 'N';
       }
-      else{
-        if ($('#access').text() == 'Public'){
+      else {
+        if ($('#access').text() == 'Public') {
           shared = 'O';
         }
       }
@@ -60,6 +63,7 @@ $(document).ready(function () {
         function (data) {
 
           if ($.trim(data) == 'Done') {
+            $('#titleMessage').css("color", "green");
             $('#titleMessage').text("Album Created");
           }
           console.log(data);

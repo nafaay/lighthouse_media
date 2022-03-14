@@ -19,7 +19,7 @@ if (isset($_POST['title1']))
 										'description1'=>$description, 'shared1' =>$shared));					
 			
 				echo 'Done';
-				$_SESSION['new_album'] = 'created';
+				$_SESSION['albums'] = 'created';
 				$reqAdd->closeCursor();
 			}
 			else

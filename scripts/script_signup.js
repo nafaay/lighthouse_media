@@ -1,11 +1,14 @@
 $(document).ready(function () {
 
   clearMessages();
+  $('#user_name').on('focus', function () {
+    $('#user_name_message').text('');
+  })
   $('#submit').on('click', function () {
     verifyZones();
   });
 
-  function clearMessages(){
+  function clearMessages() {
     $('#user_name_message').text('');
     $('#email_address_message').text('');
     $('#password_message').text('');
@@ -25,7 +28,7 @@ $(document).ready(function () {
     return true;
   }
 
-  function validateemail($email_address){
+  function validateemail($email_address) {
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!$email_address.match(mailformat))
       return false;
@@ -78,7 +81,7 @@ $(document).ready(function () {
         $('#email_address_message').css("fontWeight", "bold");
         $('#email_address_message').text('The Email Address is not valid');
       }
-      else{
+      else {
         $pass = true;
         $('#email_address_message').text('');
       }

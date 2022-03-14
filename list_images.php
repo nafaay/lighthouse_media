@@ -33,7 +33,12 @@
 		  	<div class="col-md-12" id="welcome">
 		  	  <h3>Welcome <span class="name"><?php echo $name ?></span> to Lighthouse Labs Social Media Website</h3>	
 			  </div>
-				<?php if(trim($name) == "" || !isset($_SESSION['new_album'])){
+
+				<?php if(trim($name) == ""){
+					return;
+				}
+
+				if(!isset($_SESSION['albums'])){
 					?>
 			  	<div class="col-md-12" id="welcome">
 			  	  <h3 style="color: red">You have No  Album Created Yet</h3>	
@@ -42,6 +47,7 @@
 					return;
 				}
 				?>
+
 						<div class="col-md-6">
 						<select name="album" id="album">
 						<?php
@@ -74,7 +80,12 @@
 					}?>
 
 				<div class="col-md-12">
-					<div class="col-md-2">
+					<div class="col-md-2" style="background-color: red;">
+						<?php 
+						if(isset($_SESSION['images'])){
+							echo $_SESSION['images'];
+						}
+							?>
 						<p id="images"></p>
 					</div>
 
