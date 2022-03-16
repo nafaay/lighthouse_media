@@ -6,18 +6,18 @@
 		require_once("connexion.php");
 		$album_id = $_POST['album_id1'];
 		$request = $connBD->prepare
-					('SELECT * FROM image WHERE album_id = :album_id1');
+					('SELECT * FROM pictures WHERE album_id = :album_id1');
 		$request->bindParam(':album_id1', $album_id);   
 		$request->execute();
-		$array_images = [];
-		$images = '';					
+		$array_pictures = [];
+		$pictures = '';					
 		while ($data = $request->fetch()){
 			$filename = $data['filename'];
-			array_push($array_images, $filename);		
+			array_push($array_pictures, $filename);		
 		}
-		$images = implode(',', $array_images);
-		$_SESSION['images'] = $images;
+		$pictures = implode(',', $array_pictures);
+		$_SESSION['pictures'] = $pictures;
 		
-		echo $images;
+		echo $pictures;
 }	
 

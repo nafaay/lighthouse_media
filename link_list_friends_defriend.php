@@ -8,7 +8,7 @@
 		$id_requestee = 0;
 		$email_address = $_POST['email_address1'];
 		$status = 'A';
-		$request = $connBD->prepare('SELECT id  FROM user_profile 
+		$request = $connBD->prepare('SELECT id  FROM users 
 																WHERE email_address = :email_address1');
 		$request->bindParam(':email_address1', $email_address);   
 		$request->execute();				
@@ -16,9 +16,9 @@
 			$id_requestee = $data['id'];
 		}
 	
-		$sql = "DELETE FROM friendship 
-						WHERE friend_requester_id = :id_requester1 
-						AND friend_requestee_id = :id_requestee1 
+		$sql = "DELETE FROM requests 
+						WHERE requester_id = :id_requester1 
+						AND requestee_id = :id_requestee1 
 						AND status = :status1"; 
 		$reqSupp = $connBD->prepare($sql);
 		$reqSupp->bindParam(':id_requester1', $id_requester);   
@@ -27,9 +27,9 @@
 		$reqSupp->execute();
 		$reqSupp->closeCursor();	
 
-		$sql = "DELETE FROM friendship 
-						WHERE friend_requester_id = :id_requestee1 
-						AND friend_requestee_id = :id_requester1 
+		$sql = "DELETE FROM requests 
+						WHERE requester_id = :id_requestee1 
+						AND requestee_id = :id_requester1 
 						AND status = :status1"; 
 		$reqSupp = $connBD->prepare($sql);
 		$reqSupp->bindParam(':id_requester1', $id_requester);   

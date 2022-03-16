@@ -6,8 +6,6 @@ $(document).ready(function () {
   let arrayEmailsToDeny;
 
 
-
-
   $('#defriend').on('click', function () {
     verifyZonesDefriend();
   });
@@ -24,11 +22,11 @@ $(document).ready(function () {
     verifyZonesRemove();
   });
 
-  function verifyZonesDefriend(){
+  function verifyZonesDefriend() {
     arrayEmailsToDefriend = [];
     let boolDefriend = false;
     cpt = -1;
-    $('#tableF').find('tr').each(function(){
+    $('#tableF').find('tr').each(function () {
       cpt++;
       let row = $(this);
       if (row.find('input[type="checkbox"]').is(':checked')) {
@@ -49,13 +47,13 @@ $(document).ready(function () {
     }
   }
 
-  function defriendFriends(arrayToDefriend){
+  function defriendFriends(arrayToDefriend) {
     arrayToDefriend.forEach(element => {
       $.post('link_list_friends_defriend.php', {
         email_address1: element
       },
-      function(data){
-      });
+        function (data) {
+        });
     });
   }
 

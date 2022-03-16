@@ -10,7 +10,7 @@ if (isset($_POST['album_id1'])){
     $title= $_POST['title1'];
     $description= $_POST['description1'];
     $filename= $_POST['filename1'];
-		$reqAdd = $connBD->prepare('INSERT INTO image(album_id, filename, title, description, date_added ) 
+		$reqAdd = $connBD->prepare('INSERT INTO pictures(album_id, picture_filename, picture_title, picture_description, picture_date ) 
 					VALUES(:album_id1, :filename1, :title1, :description1, :date_added1)');				
 			if ($reqAdd)
 			{				

@@ -1,12 +1,12 @@
 <?php
 	session_start();
   require_once('header.php');
-	$title_images = "";
+	$title_pictures = "";
 	$description = "";
   if(isset($_POST['submit'])){
 		$upload_to_album = $_POST['upload_to_album'];
     $file = $_FILES['file'];
-		$title_images = $_POST['title_images'];
+		$title_pictures = $_POST['title_pictures'];
 		$description = $_POST['description'];
     $fileName = $_FILES['file']['name'];
     $fileTmpName = $_FILES['file']['tmp_name'];
@@ -32,7 +32,7 @@
     }
 
     if($errorEmpty == true){
-      $messageError = "You have to upload at least one image";
+      $messageError = "You have to upload at least one picture";
     }
     else{
 
@@ -63,7 +63,7 @@
             $messageError =  "Issue uploading file(s)";
           }
           else{
-						if(trim($title_images) == ""){
+						if(trim($title_pictures) == ""){
 							$messageError = "Title is required";
 						}
 						else{
@@ -72,14 +72,14 @@
 							}
 						else{
 							$file_to_upload = "";
-							$local_image = "images/albums/";
+							$local_picture = "pictures/albums/";
 
 							$nbPictures = count($_FILES['file']['name']);		
 							for ($i=0; $i<$nbPictures; $i++){
 								$name_file= $_FILES['file']['name'][$i];
 								$tmp_name = $_FILES['file']['tmp_name'][$i];
 								$file_to_upload .= $name_file;
-								move_uploaded_file($tmp_name, $local_image.$name_file);	
+								move_uploaded_file($tmp_name, $local_picture.$name_file);	
 								if ($i<$nbPictures - 1)
 										$file_to_upload .= ",";
 							}
@@ -88,12 +88,12 @@
 							date_default_timezone_set("America/Toronto");
 							$date 			= date('Y-m-d');
 
-							$reqAdd = $connBD->prepare('INSERT INTO image(album_Id, fileName, title, description, date_added) 
-							VALUES(:upload_to_album1, :file_to_upload1, :title_images1, :description1, :date1)');				
+							$reqAdd = $connBD->prepare('INSERT INTO picture(album_Id, fileName, title, description, date_added) 
+							VALUES(:upload_to_album1, :file_to_upload1, :title_pictures1, :description1, :date1)');				
 							if ($reqAdd){
 								$reqAdd->execute(array('upload_to_album1'=>$upload_to_album, 
 								'file_to_upload1'=>$file_to_upload, 
-								'title_images1'=>$title_images, 
+								'title_pictures1'=>$title_pictures, 
 								'description1'=>$description, 
 								'date1'=>$date
 								));					
@@ -103,7 +103,7 @@
 							else
 								echo 'Fail Creation';
 							}
-							$messageSuccess =  "Image(s) uploaded with Success";
+							$messageSuccess =  "picture(s) uploaded with Success";
 						}
           }
         }
@@ -206,10 +206,10 @@
 				<br /><br /><br />
 				<div class="col-md-12">
 					<div class="col-md-2">
-						<label  for="title_images">Title:</label>
+						<label  for="title_pictures">Title:</label>
 					</div>
 					<div class="col-md-6">
-						<input type="text" name="title_images" class="form-control" id="title_images" value="<?php echo $title_images;?>">
+						<input type="text" name="title_pictures" class="form-control" id="title_pictures" value="<?php echo $title_pictures;?>">
 					</div>
 					<div class="col-md-4">
 						<span id="title_message"></span>
@@ -238,7 +238,7 @@
 
 				</div>
 				<div class="col-md-4">
-					<p><input type="submit" name="submit" class="btn btn-primary" value="Upload Images"></p>
+					<p><input type="submit" name="submit" class="btn btn-primary" value="Upload pictures"></p>
 				</div>
 				
 				<div class="col-md-6">

@@ -51,7 +51,7 @@
 						<div class="col-md-6">
 						<select name="album" id="album">
 						<?php
-							$request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :id');
+							$request = $connBD->prepare('SELECT * FROM albums WHERE user_id = :id');
 							$request->bindParam(':id', $id);
 							$request->execute();
 							$cpt = 0;
@@ -59,7 +59,7 @@
 								{
 									$cpt++;
 									$album_id = $data['id'];
-									$owner_id = $data['owner_id'];
+									$user_id = $data['user_id'];
 									$title = $data['title'];
 									?>
 										<option value="<?php echo($album_id);?>">										

@@ -24,9 +24,9 @@
 		}
 
 		$request = $connBD->prepare
-					('SELECT * FROM friendship 
-										 WHERE friend_requester_id = :id_requester1 
-										 AND friend_requestee_id = :id_requestee1');
+					('SELECT * FROM requests 
+										 WHERE requester_id = :id_requester1 
+										 AND requestee_id = :id_requestee1');
 		$request->bindParam(':id_requester1', $id_requester);   
 		$request->bindParam(':id_requestee1', $id_requestee);   
 
@@ -43,10 +43,10 @@
 		}
 		else{
 			$status = 'R';
-			$reqAdd = $connBD->prepare('INSERT INTO friendship(friend_requester_id, friend_requestee_id, status) 
-					VALUES(:friend_requester_id1, :friend_requestee_id1, :status1)');				
+			$reqAdd = $connBD->prepare('INSERT INTO requests(requester_id, requestee_id, status) 
+					VALUES(:requester_id1, :requestee_id1, :status1)');				
 			if ($reqAdd){
-				$reqAdd->execute(array('friend_requester_id1'=>$id_requester,'friend_requestee_id1'=>$id_requestee,'status1'=>$status));								
+				$reqAdd->execute(array('requester_id1'=>$id_requester,'requestee_id1'=>$id_requestee,'status1'=>$status));								
 				echo $user_name;
 				$reqAdd->closeCursor();
 				}

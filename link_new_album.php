@@ -11,11 +11,11 @@ if (isset($_POST['title1']))
 		$date 			= date('Y-m-d');
 		$id 		= $_SESSION['id'];
 
-		$reqAdd = $connBD->prepare('INSERT INTO album(owner_id, title, date_updated, description, shared) 
-					VALUES(:owner_id1, :title1, :date_updated1, :description1, :shared1)');				
+		$reqAdd = $connBD->prepare('INSERT INTO albums(user_id, album_title, album_date, album_description, album_shared) 
+					VALUES(:user_id1, :title1, :date_updated1, :description1, :shared1)');				
 			if ($reqAdd)
 			{				
-				$reqAdd->execute(array('owner_id1'=>$id, 'title1'=>$title, 'date_updated1'=>$date, 
+				$reqAdd->execute(array('user_id1'=>$id, 'title1'=>$title, 'date_updated1'=>$date, 
 										'description1'=>$description, 'shared1' =>$shared));					
 			
 				echo 'Done';

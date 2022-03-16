@@ -64,7 +64,7 @@
           </div>
           <br />
         <?php
-        $request = $connBD->prepare('SELECT * FROM friendship');
+        $request = $connBD->prepare('SELECT * FROM requests');
         $request->execute();
         $array_friends = [];
         $array_received_requests = [];
@@ -72,18 +72,18 @@
         $what = "";
 
         while($data = $request->fetch()){
-          if($data['status'] == 'A' AND $data['friend_requester_id'] == $id){
-            array_push($array_friends, $data['friend_requestee_id']);
+          if($data['status'] == 'A' AND $data['requester_id'] == $id){
+            array_push($array_friends, $data['requestee_id']);
           }
-          // if($data['status'] == 'A' AND $data['friend_requestee_id'] == $id){
-          //   array_push($array_friends, $data['friend_requester_id']);
+          // if($data['status'] == 'A' AND $data['requestee_id'] == $id){
+          //   array_push($array_friends, $data['requester_id']);
           // }
 
-          if($data['status'] == 'R' AND $data['friend_requestee_id'] == $id){
-            array_push($array_received_requests, $data['friend_requester_id']);
+          if($data['status'] == 'R' AND $data['requestee_id'] == $id){
+            array_push($array_received_requests, $data['requester_id']);
           }
-          if($data['status'] == 'R' AND $data['friend_requester_id'] == $id){
-            array_push($array_sent_requests, $data['friend_requestee_id']);
+          if($data['status'] == 'R' AND $data['requester_id'] == $id){
+            array_push($array_sent_requests, $data['requestee_id']);
           }
         }
         if(count($array_friends) == 0){
@@ -183,7 +183,7 @@
                         $cpt = 0;
                         foreach($array_to_call as $value){
                           $cpt++;
-                          $request = $connBD->prepare('SELECT * FROM user_profile WHERE id = :value');
+                          $request = $connBD->prepare('SELECT * FROM users WHERE id = :value');
                           $request->bindParam(':value', $value);
                           $request->execute();
                           if($data = $request->fetch()){

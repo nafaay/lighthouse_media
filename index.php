@@ -27,7 +27,7 @@
             $id = $_SESSION['id'];
           }
           require_once('connexion.php');
-          $request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :id');
+          $request = $connBD->prepare('SELECT * FROM albums WHERE user_id = :id');
 				  $request->bindParam(':id', $id);
 				  $request->execute();
 				  if($data = $request->fetch()){

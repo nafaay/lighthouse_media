@@ -60,23 +60,23 @@
           return;
         }
 				$cpt = 0;
-				$request = $connBD->prepare('SELECT * FROM album WHERE owner_id = :id');
+				$request = $connBD->prepare('SELECT * FROM albums WHERE user_id = :id');
 				$request->bindParam(':id', $id);
 				$request->execute();
 				while($data = $request->fetch()){
 					$nbreOfPictures = 0;
 					$cpt++;
 					$album_id = $data['id'];
-					$title = $data['title'];
-					$description = $data['description'];
-					$date_updated = $data['date_updated'];
-					$shared = $data['shared'];
+					$title = $data['album_title'];
+					$description = $data['album_description'];
+					$date_updated = $data['album_date'];
+					$shared = $data['album_shared'];
 
-					$request_images = $connBD->prepare('SELECT * FROM image WHERE album_id = :album_id1');
-					$request_images->bindParam(':album_id1', $album_id);
-					$request_images->execute();
-					while($data_images = $request_images->fetch()){
-						$filename = $data_images['filename'];
+					$request_pictures = $connBD->prepare('SELECT * FROM pictures WHERE album_id = :album_id1');
+					$request_pictures->bindParam(':album_id1', $album_id);
+					$request_pictures->execute();
+					while($data_pictures = $request_pictures->fetch()){
+						$filename = $data_pictures['filename'];
 						$nbreOfPictures += count(explode(',', $filename));
 					}
 					?>
@@ -95,7 +95,7 @@
 													<th scope="col" style="text-align: center;">Title</th>
 													<th scope="col" style="text-align: center;">Description</th>
 													<th scope="col" style="text-align: center;">Date</th>
-													<th scope="col" style="text-align: center;">Number Of Images</th>
+													<th scope="col" style="text-align: center;">Number Of pictures</th>
 													<th scope="col" style="text-align: center;">Accessibility</th>
 												</tr>
 											</thead>

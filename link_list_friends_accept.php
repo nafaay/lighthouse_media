@@ -16,19 +16,19 @@
 			$id_requestee = $data['id'];
 		}
 	
-		$reqAdd = $connBD->prepare('INSERT INTO friendship(friend_requester_id, friend_requestee_id, status) 
-				VALUES(:friend_requester_id1, :friend_requestee_id1, :status1)');				
+		$reqAdd = $connBD->prepare('INSERT INTO requests(requester_id, requestee_id, status) 
+				VALUES(:requester_id1, :requestee_id1, :status1)');				
 		if ($reqAdd){
-			$reqAdd->execute(array('friend_requester_id1'=>$id_requester,'friend_requestee_id1'=>$id_requestee,'status1'=>$status));								
+			$reqAdd->execute(array('requester_id1'=>$id_requester,'requestee_id1'=>$id_requestee,'status1'=>$status));								
 			// echo $user_name;
 			$reqAdd->closeCursor();
 		}
 
 
-		$reqModif = $connBD->prepare("UPDATE friendship 
+		$reqModif = $connBD->prepare("UPDATE requests 
 																	SET status = '$status'
-																	WHERE friend_requester_id ='$id_requestee' 
-																	AND friend_requestee_id= '$id_requester'
+																	WHERE requester_id ='$id_requestee' 
+																	AND requestee_id= '$id_requester'
 																");																		
 		$reqModif->execute();
 		$reqModif->closeCursor(); 
